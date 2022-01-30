@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  ul 
+    for todo in todos
+      li.listItem(class=todo.complete ? "complete": "")
+        | Description: #{todo.description}
+        | Complete: #{todo.complete}
+    else 
+      p no se encontro el objetoss 
