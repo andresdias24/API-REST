@@ -26,12 +26,14 @@ require('dotenv').config();
  };
 
 const connectWithRetry = () => {
-console.log('MongoDB connection with retry')
-mongoose.connect("mongodb://mongo:27017/test", options).then(()=>{
+console.log('conectando de nuevo a mongo')
+mongoose.connect(process.env.DATABASE, options)
+.then(()=>{
   console.log('MongoDB is connected')
-}).catch(err=>{
+})
+.catch(err=>{
   console.error(err, "error");
-  console.log('MongoDB connection unsuccessful, retry after 5 seconds.')
+  console.log('mongo no se pudo conectar intentando de nuevo en 5 segundos')
   setTimeout(connectWithRetry, 5000)
 })
 }

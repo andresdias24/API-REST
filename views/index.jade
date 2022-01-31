@@ -4,7 +4,7 @@ block content
   h1= title
   ul 
     for todo in todos
-      li.listItem(class=todo.complete ? "complete": "")
+      li
         | Description: #{todo.description}
         | Complete: #{todo.complete}
     else 
