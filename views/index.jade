@@ -2,10 +2,26 @@ extends layout
 
 block content
   h1 Tareas
-  ul 
-    for todo in todos
-      li
-        | Description: #{todo.description}
-        | Complete: #{todo.complete}
-    else 
-      p no se encontro el objeto
+  //- ul 
+  //-   for todo in todos
+  //-     li
+  //-       | Description: #{todo.description}
+  //-       | Complete: #{todo.complete}
+  //-   else 
+  //-     p no se encontro el objeto
+
+  form(action='/task-add' method='POST')
+    div  
+      | title: 
+      input(type='text' name='title' value='' placeholder="title" id="title")
+    div
+      | Description:
+      textarea(type='text' 
+        name='description'
+        value=''
+        cols="10"
+        rows="5" 
+        placeholder="title" 
+        id="description")
+      | 
+    input(type='submit' value='Submit')

@@ -10,14 +10,21 @@ const taskSchema = new Schema(
             maxlength: 50,
             unique: true
         },
-        description: String,
-        complete: Boolean
+        description: {
+            type: String,
+            require: true,
+        },
+        complete: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         // coloca una propiedad de update y delete
         timestamps: true,
+        // no aparezca una propiedad __v: 0
         versionKey: false
     }
 );
 
-export default  model('Task', taskSchema)
+export default model('Task', taskSchema)
