@@ -1,21 +1,23 @@
-const mongoose = require('mongoose')
+import { Schema, model } from 'mongoose'
 
 
-const todosSchema = new mongoose.Schema(
+const taskSchema = new Schema(
     {
-        description: {
+        title: {
             type: String,
             trim: true,
             require: true,
             maxlength: 50,
             unique: true
         },
+        description: String,
         complete: Boolean
     },
     {
+        // coloca una propiedad de update y delete
         timestamps: true,
         versionKey: false
     }
 );
 
-module.exports.Todo = mongoose.model('Todo', todosSchema)
+export default  model('Task', taskSchema)

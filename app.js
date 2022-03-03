@@ -1,12 +1,12 @@
 var mongoose = require("mongoose");
 var createError = require('http-errors');
-import express  from "express";
+import express from "express";
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./api/notes/routes/index');
-var usersRouter = require('./api/notes/routes/users');
+var indexRouter = require('./api/notes/routes/task');
+var usersRouter = require('./api/notes/routes/notes');
 
 
 let app = express();
@@ -14,28 +14,28 @@ require('dotenv').config();
 /**
  * DataBase setup
  */
- const options = {
+const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   autoIndex: true,
   serverSelectionTimeoutMS: 30000,
   socketTimeoutMS: 75000,
   family: 4,
-  keepAlive: true, 
+  keepAlive: true,
   keepAliveInitialDelay: 300000,
- };
+};
 
-const connectWithRetry = () => {
-console.log('conectando de nuevo a mongo')
-mongoose.connect(process.env.DATABASE, options)
-.then(()=>{
-  console.log('MongoDB is connected')
-})
-.catch(err=>{
-  console.error(err, "error");
-  console.log('mongo no se pudo conectar intentando de nuevo en 5 segundos')
-  setTimeout(connectWithRetry, 5000)
-})
+const connectWithRetry = async () => {
+  console.log('conectando de nuevo a mongo')
+  await mongoose.connect(process.env.DATABASE, options)
+    .then(() => {
+      console.log('MongoDB is connected')
+    })
+    .catch(err => {
+      console.error(err, "error");
+      console.log('mongo no se pudo conectar intentando de nuevo en 5 segundos')
+      setTimeout(connectWithRetry, 5000)
+    })
 }
 
 connectWithRetry()
@@ -43,6 +43,7 @@ connectWithRetry()
  *
  */
 
+// concatenar directorios
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -52,8 +53,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/task', indexRouter);
+app.use('/notes', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
