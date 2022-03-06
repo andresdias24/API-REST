@@ -12,8 +12,7 @@ router.get('/', async function(req, res, next) {
 router.post('/tasks/add', async (req, res) => {
   const task = Task(req.body)
   const taskSave = await task.save()
-  console.log("😆👽🕳👨‍💻 🧬 ~ file: task.js ~ line 15 ~ taskSave", taskSave)
-  res.send('add task')
+  res.redirect("/task")
 })
 
 module.exports = router;
