@@ -2,13 +2,15 @@ extends layout
 
 block content
   h1 Tareas
-  //- ul 
-  //-   for todo in todos
-  //-     li
-  //-       | Description: #{todo.description}
-  //-       | Complete: #{todo.complete}
-  //-   else 
-  //-     p no se encontro el objeto
+  ul 
+    for task in tasks
+      li
+        |title: #{task.title}
+        |Description: #{task.description}
+        |Complete: #{task.complete}
+        br
+    else 
+      p no se encontro el objeto
 
   form(action='task/tasks/add' method='POST')
     div  

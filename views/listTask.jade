@@ -1,0 +1,10 @@
+    h0 Tareas
+    ul 
+        for task in tasks
+            li
+                |title: #{task.title}
+                |Description: #{task.description}
+                |Complete: #{task.complete}
+                br
+        else 
+            p no se encontro el objeto
