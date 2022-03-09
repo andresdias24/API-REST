@@ -1,10 +1,29 @@
-    h0 Tareas
-    ul 
-        for task in tasks
-            li
-                |title: #{task.title}
-                |Description: #{task.description}
-                |Complete: #{task.complete}
-                br
-        else 
-            p no se encontro el objeto
+extends layout
+
+block content
+  h1 Tareas
+  ul 
+    for task in tasks
+      li
+        |title: #{task.title}
+        |Description: #{task.description}
+        |Complete: #{task.complete}
+        br
+    else 
+      p No tiene tareas pendientes 🥳🥳🥳🥳
+      
+  form(action='task/tasks/add' method='POST')
+    div  
+      | title: 
+      input(type='text' name='title' value='' placeholder="title" id="title")
+    div
+      | Description:
+      textarea(type='text' 
+        name='description'
+        value=''
+        cols="20"
+        rows="20" 
+        placeholder="title" 
+        id="description")
+      | 
+    input(type='submit' value='Submit')

@@ -1,29 +1,16 @@
-extends layout
+THE CONVERTED OUTPUG WILL APPEAR HERE
 
-block content
-  h1 Tareas
-  ul 
-    for task in tasks
-      li
-        |title: #{task.title}
-        |Description: #{task.description}
-        |Complete: #{task.complete}
-        br
-    else 
-      p no se encontro el objeto
-
-  form(action='task/tasks/add' method='POST')
-    div  
-      | title: 
-      input(type='text' name='title' value='' placeholder="title" id="title")
-    div
-      | Description:
-      textarea(type='text' 
-        name='description'
-        value=''
-        cols="10"
-        rows="5" 
-        placeholder="title" 
-        id="description")
-      | 
-    input(type='submit' value='Submit')
+doctype html
+head
+    title Pug
+    script(type='text/javascript').
+        if (foo) bar(1 + 5)
+body
+    h1 Pque pasa
+    #container.col
+        p You are amazing
+        p Pug is a terse and simple templating language.
+div
+  a.button(href='/tasks') Tasks
+  br
+  a.button(href='/notes') Notes

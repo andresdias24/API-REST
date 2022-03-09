@@ -5,13 +5,12 @@ var {Task}  = require('../../../common/models/Task')
 router.get('/', async function(req, res, next) {
   const tasks = await Task.find().lean()
   // {description: 'going to the gym', complete: true}
-  res.render('index', { tasks: tasks });
+  res.render('listTask', { tasks: tasks });
 });
 
 router.post('/tasks/add', async (req, res) => {
   const task = Task(req.body)
-  const taskSave = await task.save()
-  console.log("😆👽🕳👨‍💻 🧬 ~ file: task.js ~ line 15 ~ taskSave", taskSave)
+  await task.save()
   // res.redirect("/task")
   res.status(200)
 })
