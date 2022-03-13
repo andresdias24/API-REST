@@ -8,11 +8,14 @@ router.get('/', async function(req, res, next) {
   res.render('listTask', { tasks: tasks });
 });
 
-router.post('/tasks/add', async (req, res) => {
-  const task = Task(req.body)
-  await task.save()
-  // res.redirect("/task")
-  res.status(200)
+router.post('/addTask', async (req, res) => {
+  try {
+    const task = Task(req.body)
+    await task.save()
+    res.render("index")
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 module.exports = router;

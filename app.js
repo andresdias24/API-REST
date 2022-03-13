@@ -5,9 +5,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var tasksRouter = require('./api/notes/routes/task');
+var tasksRouter = require('./api/tasks/routes/task');
 var usersRouter = require('./api/notes/routes/note');
 var indexRouter = require('./api/index/routes/index');
+var editTask = require('./api/tasks/routes/editTask');
 
 
 let app = express();
@@ -55,6 +56,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/tasks', tasksRouter);
+app.use('/editTask', editTask);
 app.use('/notes', usersRouter);
 app.use('/', indexRouter);
 
