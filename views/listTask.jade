@@ -48,13 +48,13 @@ block content
               tr
                 td #{index}
                 td #{task.title}
-                td #{task.description}    
+                td #{task.description}
                 td     
                   input#cbox2(type='checkbox' value='s')
                   label(for='cbox2')
                 td
                   button 
-                    a(href="/editTask")  Actualizar
+                    a(href="/editTask/#{task._id}")  Editar
                   button
                     a(href="/editTask")  Eliminar
                 td
