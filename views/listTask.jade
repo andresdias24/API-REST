@@ -4,20 +4,22 @@ block content
   br
   section
     form(action='/tasks/addTask' method='POST')
-      div  
-        | titulo: 
-        input(type='text' name='title' value='' placeholder="title" id="title")
-      div
-        | Description:
-        textarea(type='text' 
-          name='description'
-          value=''
-          cols="20"
-          rows="6" 
-          placeholder="title" 
-          id="description")
-        | 
-      input(type='submit' value='Submit')
+    div.container
+      div.form
+        div.title  
+          | titulo: 
+          br
+          input(type='text' name='title' value='' placeholder="title" id="title")
+        div.description
+          | Description:
+          br
+          textarea(type='text' 
+            name='description'
+            value=''
+            placeholder="title" 
+            id="description")
+      div.submit
+        input(type='submit' value='Submit')
   //- SECCION DE LA LISTA DE TAREAS
   br
   article 
@@ -39,11 +41,11 @@ block content
               td #{task.description}
               td     
                 input#cbox2(type='checkbox' value='s')
-                label(for='cbox2')
               td
-                button 
+                button.operation 
                   a(href="/editTask/#{task._id}")  Editar
-                button
+                br
+                button.operation
                   a(href="/editTask")  Eliminar
               td
                 label(for='start') 
