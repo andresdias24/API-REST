@@ -4,5 +4,73 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #f06220;
 }
+table {
+  text-align: center;
+vertical-align: middle;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 13px 19px;
+}
+
+thead {
+  background-color: #333;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2%;
+}
+
+thead th {
+  width: 25%;
+}
+
+thead th {
+width: 25%;
+}
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+tbody th {
+  background-color: #36c;
+  color: #fff;
+  text-align: left;
+}
+tbody tr:nth-child(even) th {
+  background-color: #25c;
+}
+
+.operation {
+  margin: 0.6rem;
+  padding: 0.3rem;
+}
+.container {
+  display: flex;
+  background: #f06220;
+}
+.submit {
+  background: #f06220;
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form {
+  display: flex;
+}
+.form input {
+  margin: 0.3rem;
+  padding: 0.3rem;
+}
+
