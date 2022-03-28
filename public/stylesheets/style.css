@@ -28,12 +28,9 @@ thead {
 }
 
 thead th {
-  width: 25%;
+  width: 10%;
 }
 
-thead th {
-width: 25%;
-}
 tbody tr:nth-child(odd) {
   background-color: #fff;
 }
@@ -51,26 +48,26 @@ tbody tr:nth-child(even) th {
 }
 
 .operation {
-  margin: 0.6rem;
-  padding: 0.3rem;
-}
-.container {
-  display: flex;
-  background: #f06220;
-}
-.submit {
-  background: #f06220;
-  color: #fff;
-  padding: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.form {
-  display: flex;
-}
-.form input {
   margin: 0.3rem;
   padding: 0.3rem;
 }
 
+.container-form {
+  margin: 0 auto;
+  width: 50%;
+  background: #f06220;
+}
+
+.form {
+  display: flex;
+}
+
+
+.free {
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+}
