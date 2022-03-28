@@ -1,18 +1,14 @@
 extends layout
-
-block content      
-  form(action='/tasks/addTask' method='POST')
+block content
+  form(action='/editTaskQuery/#{task._id}' method='POST')
     div  
       | titulo: 
-      input(type='text' name='title' value='' placeholder="title" id="title")
+      input(type='text' name='title' value='#{task.title}' placeholder="title" id="title")
     div
       | Description:
       textarea(type='text' 
         name='description'
-        value=''
-        cols="20"
-        rows="20" 
-        placeholder="title" 
-        id="description")
-      | 
-    input(type='submit' value='Submit')
+        rows="20"
+        placeholder="Descripcion")
+        | #{task.description}    
+    button update

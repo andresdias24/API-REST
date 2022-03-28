@@ -1,14 +1,53 @@
 extends layout
-
 block content
-  h1 Tareas
-  table.default
-    for task in tasks
-        tr
-          td title: #{task.title}
-          td Description: #{task.description}
-          td Complete: #{task.complete}
-          td 
-            a(href="/editTask")  Update
-    else 
-      p No tiene tareas pendientes 🥳🥳🥳🥳
+  //- SECCION DEL FORMULARIO
+  br
+  section.container-form
+    h2 CREAR TAREA  📝 
+    form(action='/tasks/addTask' method='POST')
+      div.form
+        div.title  
+          | titulo: 
+          input(type='text' name='title' value='' placeholder="title" id="title")
+        div.description
+          | Description:
+          textarea(type='text' 
+            name='description'
+            value=''
+            placeholder="title" 
+            id="description")
+        input(type='submit' value='Submit')
+  //- SECCION DE LA LISTA DE TAREAS
+  br
+  article 
+    section
+      table
+        thead
+          tr
+            th Numero
+            th Nombre
+            th Descripcion
+            th Estado
+            th Operacion
+            th fecha entrega
+        tbody
+          for task, index in tasks
+            tr
+              td #{index}
+              td #{task.title}
+              td #{task.description}
+              td     
+                input#cbox2(type='checkbox' value='s')
+              td
+                button.operation 
+                  a(href="/editTask/#{task._id}")  EDITAR TAREA 📝 
+                br
+                button.operation
+                  a(href="/editTask")  ELIMINAR TAREA 🗑️
+              td
+                label(for='start') 
+                input#start(type='date' name='trip-start' value='date')
+
+          else
+            div.free
+              h1 No tiene tareas pendientes 🥳🥳🥳🥳

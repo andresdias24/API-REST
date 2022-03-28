@@ -1,3 +1,4 @@
+-var titlePrincipal = "facil y limpio"
 doctype html
 html
   head
@@ -5,13 +6,17 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     nav
-      .container-fluid
-        a Navbar
-        button(type="button")
-          span salir
-        div(id="navbarNavAltMarkup")
-          div
-            a(aria-current="page" href="#") Home
-            a(href="#") Features
-            a(href="#") Pricing
+        .container-fluid
+          div.nav
+            div
+              a= titlePrincipal 
+              button(type="button")
+                span salir
+            div(id="navbarNavAltMarkup")
+              div
+                a(aria-current="page" href="#") Home
+                a(href="#") Features
+                a(href="#") Pricing
+                button
+                  a(href="/") HOME
     block content
