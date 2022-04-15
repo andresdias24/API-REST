@@ -1,21 +1,35 @@
-var mongoose = require('mongoose')
 
-const taskSchema = new mongoose.Schema(
+import { Schema, model } from 'mongoose';
+const { ObjectId } = Schema
+
+const taskSchema = new Schema(
     {
-        title: {
+        name: {
             type: String,
             trim: true,
             require: true,
-            maxlength: 50,
+            // un caracter de ACSII es de 1 byte que equibalen a 8 bits 
+            maxlength: 32,
             unique: true
         },
         description: {
             type: String,
+            trim: true,
             require: true,
+            maxlength: 32,
         },
         complete: {
             type: Boolean,
             default: false
+        },
+        category: {
+            type: ObjectId,
+            ref: "Category",
+            require: true
+        },
+        photo: {
+            data: Buffer,
+            contentType: String
         }
     },
     {
@@ -26,4 +40,5 @@ const taskSchema = new mongoose.Schema(
     }
 );
 
-module.exports.Task=  mongoose.model('Task', taskSchema);
+export default model('Task', taskSchema);
+
