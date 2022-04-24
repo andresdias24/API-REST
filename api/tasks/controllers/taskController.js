@@ -86,7 +86,6 @@ exports.taskId = (req, res, next, id) => {
 }
 
 exports.photo = (req, res, next) => {
-    console.log("😆👽🕳👨‍💻 🧬 ~ file: taskController.js ~ line 97 ~ req", req.task)
     if (req.task.photo.data) {
         res.set('Content-Type', req.task.photo.contentType)
         return res.send(req.task.photo.data)

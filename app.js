@@ -10,10 +10,18 @@ var tasksRouter = require('./api/tasks/routes/task');
 var usersRouter = require('./api/notes/routes/note');
 var indexRouter = require('./api/index/routes/index');
 var editTaskRouter = require('./api/tasks/routes/editTask');
+const cors = require("cors");
+const corsOptions = {
+  origin: '*',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+
 
 
 let app = express();
 require('dotenv').config();
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 /**
  * DataBase setup
