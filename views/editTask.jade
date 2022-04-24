@@ -1,6 +1,6 @@
 extends layout
 block content
-  form(action='/editTaskQuery/#{task._id}' method='POST')
+  form(action='editTask/editTaskQuery/#{task._id}' method='POST')
     div  
       | titulo: 
       input(type='text' name='title' value='#{task.title}' placeholder="title" id="title")

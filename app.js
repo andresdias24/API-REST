@@ -1,18 +1,28 @@
+import express from "express";
 var mongoose = require("mongoose");
 var createError = require('http-errors');
-import express from "express";
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+let categoryTaskRouter = require('./api/tasks/routes/category');
 var tasksRouter = require('./api/tasks/routes/task');
 var usersRouter = require('./api/notes/routes/note');
 var indexRouter = require('./api/index/routes/index');
 var editTaskRouter = require('./api/tasks/routes/editTask');
+const cors = require("cors");
+const corsOptions = {
+  origin: '*',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+
 
 
 let app = express();
 require('dotenv').config();
+app.use(cors(corsOptions)) // Use this after the variable declaration
+
 /**
  * DataBase setup
  */
@@ -31,21 +41,20 @@ const connectWithRetry = async () => {
   console.log('conectando de nuevo a mongo')
   await mongoose.connect(process.env.DATABASE, options)
     .then(() => {
-      console.log('MongoDB is connected')
+      console.log('CONECTADO A MONGO')
     })
     .catch(err => {
       console.error(err, "error");
-      console.log('mongo no se pudo conectar intentando de nuevo en 5 segundos')
+      console.log('REINTENTANDO CONEXION A MONGO')
       setTimeout(connectWithRetry, 5000)
     })
 }
 
 connectWithRetry()
 /**
- *
+ * concatenar directorios
  */
 
-// concatenar directorios
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 // middleware
@@ -55,8 +64,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/tasks', tasksRouter);
+app.use('/addTasks', tasksRouter);
 app.use('/editTask', editTaskRouter);
+app.use('/category', categoryTaskRouter);
 app.use('/notes', usersRouter);
 app.use('/', indexRouter);
 

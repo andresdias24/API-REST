@@ -1,21 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var {Task}  = require('../../../common/models/Task')
+
+const { create, list, remove, taskId, photo } = require('../controllers/taskController');
+
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-  const tasks = await Task.find().sort({_id: -1}).lean()
-  // {description: 'going to the gym', complete: true}
-  res.render('listTask', { tasks: tasks });
-});
+router.get('/list', list);
+router.get('/photo/:taskId', photo)
+router.post('/create', create);
+router.delete('/:taskId', remove);
 
-router.post('/addTask', async (req, res) => {
-  try {
-    const task = Task(req.body)
-    await task.save()
-    res.render("index")
-  } catch (error) {
-    console.log(error);
-  }
-})
-
+router.param('taskId', taskId);
 module.exports = router;

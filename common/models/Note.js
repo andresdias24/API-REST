@@ -1,6 +1,8 @@
-var mongoose = require('mongoose')
 
-const notesSchema = new mongoose.Schema(
+import { Schema, model } from 'mongoose';
+const { ObjectId } = Schema
+
+const notesSchema = new Schema(
     {
         title: {
             type: String,
@@ -12,6 +14,15 @@ const notesSchema = new mongoose.Schema(
         description: {
             type: String,
             require: true,
+        },
+        complete: {
+            type: Boolean,
+            default: false
+        },
+        category: {
+            type: ObjectId,
+            require: true,
+            default: 'General'
         }
     },
     {
@@ -21,5 +32,4 @@ const notesSchema = new mongoose.Schema(
         versionKey: false
     }
 );
-
-module.exports.Notes =  mongoose.model('Notes', notesSchema);
+export default model('Notes', notesSchema);
