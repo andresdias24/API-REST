@@ -10,6 +10,8 @@ var tasksRouter = require('./api/tasks/routes/task');
 var usersRouter = require('./api/notes/routes/note');
 var indexRouter = require('./api/index/routes/index');
 var editTaskRouter = require('./api/tasks/routes/editTask');
+var auth = require('./api/auth/routes/auth');
+
 const cors = require("cors");
 const corsOptions = {
   origin: '*',
@@ -36,7 +38,9 @@ const options = {
   keepAlive: true,
   keepAliveInitialDelay: 300000,
 };
-
+// mongoose.connect(process.env.DATABASE, options).then(() => {
+//     console.log("connected to database");
+// })
 const connectWithRetry = async () => {
   console.log('conectando de nuevo a mongo')
   await mongoose.connect(process.env.DATABASE, options)
@@ -69,6 +73,7 @@ app.use('/editTask', editTaskRouter);
 app.use('/category', categoryTaskRouter);
 app.use('/notes', usersRouter);
 app.use('/', indexRouter);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
